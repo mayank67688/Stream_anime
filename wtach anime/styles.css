@@ -1,0 +1,44 @@
+/* Anime Banners */
+.anime-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.anime-card {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 8px;
+    width: 200px; /* Adjusted width of the card */
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.anime-card img { 
+    width: 100%; 
+    height: auto; 
+    max-width: 150px; /* Adjusted maximum image width */
+    border-radius: 8px;
+}
+
+.anime-card h3 {
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.anime-card button {
+    margin-top: 10px;
+    background-color: #ff4500;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.anime-card button:hover {
+    background-color: #e53e00;
+}
