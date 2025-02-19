@@ -1,75 +1,37 @@
-// JavaScript for Search functionality
+// Toggle Navigation Menu
+function toggleMenu() {
+    const menu = document.querySelector('.menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
+// Anime Search Functionality
 function searchAnime() {
-    const searchQuery = document.getElementById("searchInput").value.toLowerCase();
-    const animeCards = document.querySelectorAll(".anime-card");
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let animeCards = document.querySelectorAll('.anime-card');
 
     animeCards.forEach(card => {
-        const animeName = card.querySelector("h3").innerText.toLowerCase();
-        if (animeName.includes(searchQuery)) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
+        let title = card.querySelector('h3').innerText.toLowerCase();
+        card.style.display = title.includes(input) ? 'block' : 'none';
     });
 }
 
-// JavaScript for redirecting to an anime's episode page
+// Watch Now Functionality
 function watchAnime(animeName) {
-    alert("You selected: " + animeName + ". Redirecting to episodes...");
-    document.getElementById('home').style.display = 'none';  // Hide anime list
-    document.getElementById('episodes').style.display = 'block';  // Show episode section
-    populateEpisodes(animeName);  // Populate episode list for selected anime
+    window.location.href = `video.html?anime=${encodeURIComponent(animeName)}`;
 }
 
-// JavaScript for populating episodes based on selected anime
-function populateEpisodes(animeName) {
-    const episodeList = document.getElementById("episodeList");
-    episodeList.innerHTML = "";  // Clear previous episode list
-
-    let episodes = [];
-    if (animeName === "Attack on Titan") {
-        episodes = [
-            "Attack on Titan Episode 1",
-            "Attack on Titan Episode 2",
-            "Attack on Titan Episode 3",
-        ];
-    } else if (animeName === "Naruto") {
-        episodes = [
-            "Naruto Episode 1",
-            "Naruto Episode 2",
-            "Naruto Episode 3",
-        ];
-    }
-
-    episodes.forEach(episode => {
-        const li = document.createElement("li");
-        li.textContent = episode;
-        li.onclick = function () {
-            playEpisode(episode);
-        };
-        episodeList.appendChild(li);
-    });
-}
-
-// JavaScript for playing an episode
-function playEpisode(episodeName) {
-    const videoPlayer = document.getElementById("videoPlayer");
-    const videoURL = `https://www.youtube.com/embed/dQw4w9WgXcQ`; // Placeholder link
-    videoPlayer.src = videoURL;
-    alert(`Now playing: ${episodeName}`);
-}
-
-// JavaScript for searching episodes
+// Episode Search
 function searchEpisode() {
-    const searchQuery = document.getElementById("episodeSearchInput").value.toLowerCase();
-    const episodeItems = document.querySelectorAll(".episode-list li");
+    let input = document.getElementById('episodeSearch').value.toLowerCase();
+    let episodes = document.querySelectorAll('.episode-list li');
 
-    episodeItems.forEach(item => {
-        const episodeTitle = item.innerText.toLowerCase();
-        if (episodeTitle.includes(searchQuery)) {
-            item.style.display = "block";
-        } else {
-            item.style.display = "none";
-        }
+    episodes.forEach(ep => {
+        let text = ep.innerText.toLowerCase();
+        ep.style.display = text.includes(input) ? 'block' : 'none';
     });
+}
+
+// Load Selected Episode
+function loadEpisode(url) {
+    document.getElementById('videoPlayer').src = url;
 }
